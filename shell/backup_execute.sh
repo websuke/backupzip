@@ -6,7 +6,7 @@ if [ $# -gt 2 -o $# -eq 0 ]; then
   echo
   echo '実行方法'
   echo '$ コマンド [-d] プロパティファイルパス'
-  exit $1
+  exit 1
 
 fi
 
@@ -30,6 +30,6 @@ else
   echo 
   echo '実行方法'
   echo '$ コマンド [-d] プロパティファイルパス'
-  exit $1
+  exit 1
 
 fi
