@@ -1,4 +1,4 @@
-package backupzip.main;
+package backupzip.batch.main;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -21,14 +21,15 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import backupzip.exception.IllegalInputFilePathException;
+import backupzip.util.SelfProperties;
 
 /**
  * 基底クラス
  */
 abstract class AbstractBackUpZipBase {
 
-    /** プロパティ */
-    Properties _properties = new Properties();
+//    /** プロパティ */
+//    Properties _properties = new Properties();
     
     /**
      * メインとなる処理
@@ -39,7 +40,7 @@ abstract class AbstractBackUpZipBase {
         int returnCode = 1;
         
         // プロパティロード
-        if (load(propertiesPath) == 1) {
+        if (SelfProperties.load(propertiesPath) == 1) {
             
             return returnCode;
         }
@@ -69,43 +70,40 @@ abstract class AbstractBackUpZipBase {
             e.printStackTrace();
         }
         
-        // 後処理
-        postprocess();
-        
         return returnCode;
     }
     
-    /**
-     * プロパティファイルの読み込みを実施する
-     * 
-     * @param propertiesPath プロパティファイルのパス
-     * @return
-     */
-    private int load(String propertiesPath) {
-        
-        try {
-            _properties.load(
-                    Files.newBufferedReader(
-                            Paths.get(propertiesPath), StandardCharsets.UTF_8));
-        } catch (NoSuchFileException e) {
-            System.err.println("プロパティファイルが存在しません。");
-            
-            return 1;
-        } catch (IOException e) {
-            e.printStackTrace();
-            
-            return 1;
-        }
-        
-        return 0;
-    }
+//    /**
+//     * プロパティファイルの読み込みを実施する
+//     * 
+//     * @param propertiesPath プロパティファイルのパス
+//     * @return
+//     */
+//    private int load(String propertiesPath) {
+//        Properties prop = SelfProperties.getInstance();
+//        try {
+//            prop.load(
+//                    Files.newBufferedReader(
+//                            Paths.get(propertiesPath), StandardCharsets.UTF_8));
+//        } catch (NoSuchFileException e) {
+//            System.err.println("プロパティファイルが存在しません。");
+//            
+//            return 1;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            
+//            return 1;
+//        }
+//        
+//        return 0;
+//    }
 
     /**
      * プロパティキー「入力ファイルパス」の値を取得する
      * @return
      */
-    protected String getInputProperties() {
-        return _properties.getProperty(getInputPropertiesKey());
+    private String getInputProperties() {
+        return SelfProperties.getInstance().getProperty(SelfProperties.getInputPropertiesKey());
     }
 
     /**
@@ -177,7 +175,7 @@ abstract class AbstractBackUpZipBase {
      * @return
      */
     private String getOutputProperties() {
-        return _properties.getProperty(getOutputPropertiesKey());
+        return SelfProperties.getInstance().getProperty(SelfProperties.getOutputPropertiesKey());
     };
 
     /**
@@ -284,20 +282,4 @@ abstract class AbstractBackUpZipBase {
         }
     }
 
-    /**
-     * 「出力ファイルパス」のキー名を返すこと
-     * @return
-     */
-    protected abstract String getOutputPropertiesKey();
-
-    /**
-     * 「入力ファイルパス」のキー名を返すこと
-     * @return
-     */
-    protected abstract String getInputPropertiesKey();
-
-    /**
-     * 後処理が必要であれば実装追加すること
-     */
-    protected abstract void postprocess();
 }

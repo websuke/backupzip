@@ -1,4 +1,4 @@
-package backupzip.main;
+package backupzip.batch.main;
 
 public final class BackUpZip extends AbstractBackUpZipBase{
 
@@ -11,21 +11,6 @@ public final class BackUpZip extends AbstractBackUpZipBase{
         }
         
         System.exit(new BackUpZip().doBatch(args[0]));
-    }
-
-    @Override
-    protected String getInputPropertiesKey() {
-        return "input.filepath";
-    }
-
-    @Override
-    protected String getOutputPropertiesKey() {
-        return "output.root.filepath";
-    }
-
-    @Override
-    protected void postprocess() {
-        // 何もしない
     }
 
 }
