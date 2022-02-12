@@ -29,7 +29,7 @@ final class BackUpZip {
      * @param propertiesPath 起動引数
      * @return
      */
-    protected int doBatch(String propertiesPath) {
+    int doBatch(String propertiesPath) {
         int returnCode = 1;
         
         // プロパティロード
