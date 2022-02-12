@@ -20,7 +20,7 @@ execute()
     
     propExists $1
     
-    java -cp $CLASSPATH backupzip.batch.main.BackUpZip $1
+    java -cp $CLASSPATH backupzip.batch.main.BackUpZipMain $1
     echo 'called zip target not delete'
     exit 0
   
@@ -28,8 +28,8 @@ execute()
     
     propExists $2
     
-    java -cp $CLASSPATH backupzip.batch.main.BackUpZip $2
-    java -cp $CLASSPATH backupzip.batch.delete.AfterDelete $2 
+    java -cp $CLASSPATH backupzip.batch.main.BackUpZipMain $2
+    java -cp $CLASSPATH backupzip.batch.delete.AfterDeleteMain $2 
     echo 'called zip target delete'
     exit 0
     
