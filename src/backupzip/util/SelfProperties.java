@@ -7,6 +7,9 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+/**
+ * プロパティ操作クラス
+ */
 public class SelfProperties{
     
     private static Properties singletonProperties = new Properties();
@@ -58,4 +61,20 @@ public class SelfProperties{
     public static String getOutputPropertiesKey() {
         return "output.root.filepath";
     }
+    
+    /**
+     * プロパティキー「入力ファイルパス」の値を取得する
+     * @return
+     */
+    public static String getInputProperties() {
+        return SelfProperties.getInstance().getProperty(SelfProperties.getInputPropertiesKey());
+    }
+
+    /**
+     * プロパティキー「出力ファイルルートパス」の値を取得する
+     * @return
+     */
+    public static String getOutputProperties() {
+        return SelfProperties.getInstance().getProperty(SelfProperties.getOutputPropertiesKey());
+    };
 }
