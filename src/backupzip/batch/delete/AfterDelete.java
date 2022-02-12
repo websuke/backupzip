@@ -14,7 +14,7 @@ import backupzip.util.SelfProperties;
  */
 final class AfterDelete{
     
-    public int doBatch(String propertiesPath) {
+    int doBatch(String propertiesPath) {
         int returnCode = 1;
         
         // プロパティロード
