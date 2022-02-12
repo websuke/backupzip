@@ -5,16 +5,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
-import backupzip.batch.main.BackUpZip;
 import backupzip.util.SelfProperties;
 
 
 /**
- * 派生クラス
+ * 後処理削除処理クラス
  */
-public final class AfterDelete{
+final class AfterDelete{
     
     public int doBatch(String propertiesPath) {
         int returnCode = 1;
@@ -25,25 +23,12 @@ public final class AfterDelete{
             return returnCode;
         }
         
-        String inputFilePath = SelfProperties.getInstance().getProperty(SelfProperties.getInputPropertiesKey());
-        File inputFile = Paths.get(inputFilePath).toFile();
+        File inputFile = Paths.get(SelfProperties.getInputProperties()).toFile();
         returnCode = allDelete(inputFile);
         
         return returnCode;
     }
     
-    public static void main(String[] args) {
-        
-        // 起動引数チェック
-        if (args.length != 1) {
-            System.err.println("起動引数の数が1ではありません。");
-            System.exit(1);
-        }
-        
-        System.exit(new AfterDelete().doBatch(args[0]));
-
-    }
-
     /**
      * 入力ファイルパス配下のファイルを全て削除する
      * 
