@@ -30,24 +30,28 @@ final class AfterDelete{
     }
     
     /**
-     * 入力ファイルパス配下のファイルを全て削除する
+     * 入力ファイルパス配下のファイル(ディレクトリ含む)を全て削除する
      * 
      * @param file
      */
     private int allDelete(File file) {
         
+        // 入力ファイルパス配下のファイル削除
         if (file.isFile()) {
             file.delete();
         }
+        
+        List<File> files = new ArrayList<>();
+        
+        // 再帰呼び出し
         if (file.isDirectory()) {
-            List<File> files = new ArrayList<>(Arrays.asList(file.listFiles()));
+            files = new ArrayList<>(Arrays.asList(file.listFiles()));
             for (File f : files) {
                 allDelete(f);
-            }
-            if (files.size() == 0) {
-                file.delete();
+                f.delete();
             }
         }
+        
         return 0;
     }
 }
