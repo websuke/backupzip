@@ -44,6 +44,9 @@ final class AfterDelete{
             for (File f : files) {
                 allDelete(f);
             }
+            if (files.size() == 0) {
+                file.delete();
+            }
         }
         return 0;
     }
