@@ -1,7 +1,16 @@
 # backupzip
 
-ちゃんとした動作テストは行ってません。
-<br>
-<br>
-バックアップ後、削除の機能も呼び出す場合バックアップ取った全てのファイルが削除されますが
-空のディレクトリは残ってしまうのが残課題。
+<b>概要<b>
+
+- BackUpZipMain.java<br>
+ZIP化バッチのエントリポイント<br><br>
+
+- BackUpZip.java<br>
+ZIP化バッチの主処理<br>
+※空のディレクトリはzip化されない(配下に1つでもファイルが存在する場合zip化の対象となる。)<br><br>
+
+- AfterDeleteMain.java<br>
+指定フォルダ配下削除バッチのエントリポイント<br><br>
+
+- AfterDelete.java<br>
+指定フォルダ配下削除バッチの主処理<br><br>
