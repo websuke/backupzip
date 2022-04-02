@@ -1,7 +1,5 @@
 # backupzip
 
-ちゃんとした動作テストは行ってません。<br><br>
-
 <b>概要<b>
 
 - BackUpZipMain.java<br>
@@ -16,6 +14,3 @@ ZIP化バッチの主処理<br>
 
 - AfterDelete.java<br>
 指定フォルダ配下削除バッチの主処理<br><br>
-
-
-

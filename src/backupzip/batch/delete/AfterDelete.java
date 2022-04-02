@@ -41,11 +41,9 @@ final class AfterDelete{
             file.delete();
         }
         
-        List<File> files = new ArrayList<>();
-        
         // 再帰呼び出し
         if (file.isDirectory()) {
-            files = new ArrayList<>(Arrays.asList(file.listFiles()));
+            List<File> files = new ArrayList<>(Arrays.asList(file.listFiles()));
             for (File f : files) {
                 allDelete(f);
                 f.delete();
